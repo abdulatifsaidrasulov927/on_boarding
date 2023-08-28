@@ -1,11 +1,11 @@
-import 'package:flutter/widgets.dart';
+import 'package:on_boarding/model/mind_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-class LocalDataBase {
+class LocalDatabase {
   Database? database;
   String tableName = "minds";
 
-  LocalDataBase();
+  LocalDatabase();
 
   Future<Database> getDb() async {
     if (database == null) {
@@ -16,23 +16,29 @@ class LocalDataBase {
   }
 
   createDatabase() async {
-    debugPrint('Database started');
-    String databasesPath = await getDatabasesPath();
+    print("Database ochish uchun harakat boshlandi");
 
+    String databasesPath = await getDatabasesPath();
     String dbPath = '${databasesPath}minds.db';
-    debugPrint('Database path $dbPath');
+    print("Databasening manzili $dbPath");
 
     var database = await openDatabase(dbPath, version: 1, onCreate: populateDb);
-    debugPrint('Database created');
-    debugPrint('Database isOpen == ${database.isOpen}');
+    print("Database ochildi");
+    print("Database ochiqmi:   ${database.isOpen}");
 
     return database;
   }
 
   void populateDb(Database database, int version) async {
     await database.execute("CREATE TABLE $tableName ("
-        "id INTEGER PRIMARY KEY,"
-        "name TEXT"
+        "mind TEXT,"
+        "author TEXT"
         ")");
+  }
+
+  Future addMind(MindModel mind) async {
+    Database db = await getDb();
+    var id = await db.insert(tableName, mind.toJson());
+    print("Mind $id bilan databsega saqlandi");
   }
 }
