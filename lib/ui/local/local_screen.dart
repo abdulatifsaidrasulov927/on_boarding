@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:on_boarding/model/mind_model.dart';
+import 'package:on_boarding/model/mind_model/mind_model.dart';
 import 'package:on_boarding/servise/local_db_servise.dart';
 
 class LocalScreen extends StatefulWidget {

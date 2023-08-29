@@ -1,4 +1,4 @@
-import 'package:on_boarding/model/mind_model.dart';
+import 'package:on_boarding/model/mind_model/mind_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocalDatabase {
