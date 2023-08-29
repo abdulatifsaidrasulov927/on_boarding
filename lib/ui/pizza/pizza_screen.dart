@@ -113,7 +113,7 @@ class _PizzaCounterScreenState extends State<PizzaCounterScreen> {
                   .add(RemovePizza(pizza: PizzaModel.pizzasModel[1]));
             },
             backgroundColor: Colors.orange[800],
-            child: const Icon(Icons.local_pizza),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),
