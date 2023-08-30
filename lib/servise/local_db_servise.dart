@@ -1,9 +1,14 @@
-import 'package:on_boarding/model/mind_model/mind_model.dart';
+import 'package:on_boarding/model/user_model/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
 class LocalDatabase {
   Database? database;
-  String tableName = "minds";
+  String tableName = "users";
+  // String firstName = "first_name";
+  // String lastName = "last_name";
+  // String age = "age";
+  // String gender = "gender";
+  // String job = "job";
 
   LocalDatabase();
 
@@ -19,7 +24,7 @@ class LocalDatabase {
     print("Database ochish uchun harakat boshlandi");
 
     String databasesPath = await getDatabasesPath();
-    String dbPath = '${databasesPath}minds.db';
+    String dbPath = '${databasesPath}users.db';
     print("Databasening manzili $dbPath");
 
     var database = await openDatabase(dbPath, version: 1, onCreate: populateDb);
@@ -31,14 +36,17 @@ class LocalDatabase {
 
   void populateDb(Database database, int version) async {
     await database.execute("CREATE TABLE $tableName ("
-        "mind TEXT,"
-        "author TEXT"
+        "first_name TEXT,"
+        "last_name TEXT,"
+        "age TEXT,"
+        "gender TEXT,"
+        "job TEXT"
         ")");
   }
 
-  Future addMind(MindModel mind) async {
+  Future addUser(UserModel user) async {
     Database db = await getDb();
-    var id = await db.insert(tableName, mind.toJson());
-    print("Mind $id bilan databsega saqlandi");
+    var id = await db.insert(tableName, user.toJson());
+    print("user $id bilan databsega saqlandi");
   }
 }

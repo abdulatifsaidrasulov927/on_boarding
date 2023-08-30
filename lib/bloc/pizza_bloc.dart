@@ -11,6 +11,7 @@ class PizzaBloc extends Bloc<PizzaEvent, PizzaState> {
       await Future.delayed(const Duration(seconds: 1));
       emit(const PizzaLoaded(pizza: <PizzaModel>[]));
     });
+
     on<AddedPizza>((event, emit) {
       if (state is PizzaLoaded) {
         final state = this.state as PizzaLoaded;
